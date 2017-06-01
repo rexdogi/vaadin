@@ -1,4 +1,6 @@
-package com.jetbrains;
+package I11.mikalauskas.paulius.controller;
+
+import I11.mikalauskas.paulius.model.Customer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

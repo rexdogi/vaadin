@@ -1,14 +1,11 @@
-package com.jetbrains;
+package I11.mikalauskas.paulius.controller;
 
-import com.jetbrains.CustomerStatus;
+import I11.mikalauskas.paulius.MyUI;
+import I11.mikalauskas.paulius.model.Customer;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.TextField;
+import com.vaadin.server.Page;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class CustomerForm extends FormLayout {
@@ -39,8 +36,18 @@ public class CustomerForm extends FormLayout {
 
         binder.bindInstanceFields(this);
 
-        save.addClickListener(e -> this.save());
-        delete.addClickListener(e -> this.delete());
+        save.addClickListener(e -> {
+            if(firstName.getValue().length() == 0) {
+                new Notification("Privalomas vartotojo vardas", Notification.Type.ERROR_MESSAGE).show(Page.getCurrent());
+            } else {
+                this.save();
+                new Notification("Pridėtas vartotojas", Notification.Type.HUMANIZED_MESSAGE).show(Page.getCurrent());
+            }
+        });
+        delete.addClickListener(e -> {
+            this.delete();
+            new Notification("Ištrintas vartotojas", Notification.Type.WARNING_MESSAGE).show(Page.getCurrent());
+        });
     }
 
     public void setCustomer(Customer customer) {

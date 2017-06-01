@@ -1,4 +1,6 @@
-package com.jetbrains;
+package I11.mikalauskas.paulius.model;
+
+import I11.mikalauskas.paulius.controller.CustomerStatus;
 
 import java.io.Serializable;
 import java.time.LocalDate;
